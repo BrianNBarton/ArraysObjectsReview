@@ -42,11 +42,20 @@ const swapFirstLast = function(arr) {
 const chopDNA = function(arr) {
 
   // Iterate Array
+  let sliceIdx = -1;
+
   arr.forEach(function(val,idx) {
     // If the current element is a stop codon, slice the array and return
+    console.log(val);
     if(val === "TAA")
-      return arr.slice(0, idx);
+      sliceIdx = idx + 1;
   });
+
+  // If sliceIdx is not -1, we found a stop codon
+  if(sliceIdx !== -1) {
+    // Slice the array and return
+    return arr.slice(0, sliceIdx);
+  }
 
   // If no stop codon was found, return the original
   return arr;
